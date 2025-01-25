@@ -1,6 +1,10 @@
+'use client';
+
 import Image, { type ImageProps } from "next/image";
 import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
+import { useQuery } from "@connectrpc/connect-query";
+import { sayHello } from "@repo/proto/example-ExampleService_connectquery.js";
 
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
@@ -19,6 +23,8 @@ const ThemeImage = (props: Props) => {
 };
 
 export default function Home() {
+  const { data } = useQuery(sayHello, { name: "world" });
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -36,6 +42,7 @@ export default function Home() {
             Get started by editing <code>apps/web/app/page.tsx</code>
           </li>
           <li>Save and see your changes instantly.</li>
+          <li>{data?.greeting}</li>
         </ol>
 
         <div className={styles.ctas}>
