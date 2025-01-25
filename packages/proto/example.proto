@@ -2,13 +2,15 @@ syntax = "proto3";
 
 package example.v1;
 
+import "google/api/field_behavior.proto";
+
 // A simple service with one RPC call
 service ExampleService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
 }
 
 message SayHelloRequest {
-  string name = 1;
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message SayHelloResponse {

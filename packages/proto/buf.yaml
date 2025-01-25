@@ -3,8 +3,11 @@ version: v2
 lint:
   use:
     - STANDARD
+  except:
+    # Package directory match makes us have cringe directory names
+    - PACKAGE_DIRECTORY_MATCH
 breaking:
   use:
     - FILE
-modules:
-  - path: src
+deps:
+  - buf.build/googleapis/googleapis
