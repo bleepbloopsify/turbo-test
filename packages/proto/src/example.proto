@@ -1,11 +1,10 @@
 syntax = "proto3";
 
-
 package example.v1;
 
 // A simple service with one RPC call
 service ExampleService {
-  rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
+  rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
 }
 
 message SayHelloRequest {
