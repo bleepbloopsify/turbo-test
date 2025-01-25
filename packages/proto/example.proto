@@ -2,17 +2,30 @@ syntax = "proto3";
 
 package example.v1;
 
+import "buf/validate/validate.proto";
 import "google/api/field_behavior.proto";
 
 // A simple service with one RPC call
 service ExampleService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
+  rpc AuthedSayHello(AuthedSayHelloRequest) returns (AuthedSayHelloResponse);
 }
 
 message SayHelloRequest {
-  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (buf.validate.field).string.min_len = 4
+  ];
 }
 
 message SayHelloResponse {
+  string greeting = 1;
+}
+
+message AuthedSayHelloRequest {
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AuthedSayHelloResponse {
   string greeting = 1;
 }
