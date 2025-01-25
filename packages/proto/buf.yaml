@@ -1,0 +1,14 @@
+# For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yaml
+version: v2
+lint:
+  use:
+    - STANDARD
+  except:
+    # Package directory match makes us have cringe directory names
+    - PACKAGE_DIRECTORY_MATCH
+breaking:
+  use:
+    - FILE
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/bufbuild/protovalidate

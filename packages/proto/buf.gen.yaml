@@ -1,0 +1,17 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/turbo-test/proto
+plugins:
+  - remote: buf.build/connectrpc/query-es:v2.0.1
+    out: gen
+    include_imports: true
+  - remote: buf.build/bufbuild/es:v2.2.3
+    out: gen
+    include_imports: true
+  - local: protoc-gen-connect-openapi
+    out: gen
+    opt:
+      - base=openapi.base.yaml
